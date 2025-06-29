@@ -1,6 +1,3 @@
-dropbox
-Flask==2.2.2
 google-cloud-storage
-gunicorn
 python-dotenv
-Werkzeug==2.2.2
+watchdog
