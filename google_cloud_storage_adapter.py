@@ -19,16 +19,12 @@ class GoogleCloudStorageAdapter:
     def upload_blob(self, source_file_name, destination_blob_name) -> str:
         """Uploads a file to the bucket, return URL to uploaded file."""
         servicename = "GoogleCloudStorageAdapter.upload_blob"
-        breakpoint()
         try:
             storage_client = storage.Client(project=GOOGLE_PROJECT_ID)
             bucket = storage_client.bucket(GOOGLE_STORAGE_BUCKET)
             blob = bucket.blob(destination_blob_name)
 
             blob.upload_from_filename(source_file_name)
-            logging.info(
-                f"{servicename} File {source_file_name} uploaded to {destination_blob_name}."
-            )
         except Exception as err:
             logging.error(f"{servicename}, file: {source_file_name} Error: {err}")
             raise err

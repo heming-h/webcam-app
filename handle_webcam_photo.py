@@ -63,12 +63,10 @@ class PhotoHandler(FileSystemEventHandler):
             # Upload to Google Cloud Storage
             out_file = "webcam.jpg"
             url = GoogleCloudStorageAdapter().upload_blob(filepath, out_file)
-            logger.info(f"Uploaded to: {url}")
             # Archive the file
             os.makedirs(ARCHIVE_FOLDER, exist_ok=True)
             archive_path = os.path.join(ARCHIVE_FOLDER, os.path.basename(filepath))
             shutil.move(filepath, archive_path)
-            logger.info(f"Archived to: {archive_path}")
         except Exception as e:
             logger.error(f"Failed to process {filepath}: {e}")
 
